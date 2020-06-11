@@ -1,11 +1,13 @@
-b = ["45 ", "42 ", "52 ", "49 ", "47"]
-f=open("feedback.txt","a",encoding="utf-8")
-for i in b:
-    f.write(i)
+f=open("datacus.txt","r",encoding="utf-8")
+a=f.readlines()
 f.close()
-g=open("feedback.txt","r",encoding="utf-8")
-a=g.read().split(" ")
-c=list()
+b=list()
+c="1800"
 for i in a:
-    c.append(int(i))
-print(c)
+    if c in i:
+        b.append(i)
+        break
+if c not in i:
+    print("Fales")
+print(a)
+print(b)

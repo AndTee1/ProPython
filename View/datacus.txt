@@ -1,38 +1,8 @@
-Name: AndTee Phone: 124545 CMND: 0012 UsedTime: Night
-Name: Long Phone: 021215 CMND: 002 UsedTime: Day
-Name: Thuong Phone: 48498 CMND: 155 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: AndTee Phone: 645 CMND: 0212 UsedTime: Day
-Name: Phuc Phone: 0114887 CMND: 12548 UsedTime: Night
-Name: ahihai Phone: 2 CMND: 1 UsedTime: Night
-Name: Phuc Phone: 15556 CMND: 01236 UsedTime: Day
-Name: Phuc Phone: 15557 CMND: 01236 UsedTime: DayokokokName: Phuc Phone: 154987489 CMND: 01326598 UsedTime: Day
-Name: Phuc Phone: 00001 CMND: 01268 UsedTime: Day
-Name: Long Phone: 09999999 CMND: 0123488 UsedTime: Night
-okok
+Name: AndTee Phone: 0123456 CMND: 115011 UsedTime: Day
+Name: Thuong Phone: 987654 CMND: 18001125 UsedTime: Day
+Name: Thuong Phone: 9876541 CMND: 18001125 UsedTime: Day
+Name: AndTee Phone: 01254 CMND: 117846 UsedTime: Day
+Name: AndTee1 Phone: 45678 CMND: 18000115 UsedTime: Day
+Name: AndTee1 Phone: 096155 CMND: 1788445 UsedTime: Day
+Name: Long Phone: 29112000 CMND: 188774 UsedTime: Day
+ok

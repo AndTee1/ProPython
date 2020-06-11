@@ -9,167 +9,182 @@ from tkinter import messagebox as mb
 time=datetime.datetime.now().ctime()
 time=str(time)
 class BAction(object):
-    def __init__(self,master):
-            self.master = master
-            # --Frame
-            self.top = Frame(master, height=50, bg='white')
-            self.top.pack(fill=X)
-            self.bottow = Frame(master, height=600, bg="#99ccff")
-            self.bottow.pack(fill=X)
-            # top Frame design
-            self.top_frame_titel = Label(self.top, text="Action Hotel", font="arial 28 underline bold italic", fg="#004d99", bg="white")
-            self.top_frame_titel.place(x=250, y=1)
-            self.top_frame_time = Label(self.top, text="Day&Time: " + time)
-            self.top_frame_time.place(x=650, y=20)
-            # bottow Frame design
-
-            self.bottow_frame_lbIDRoom = Label(self.bottow, text="IDRoom: ", font="arial 12 underline bold", fg="#004d99",
+    def __init__(self, Master):
+            self.Master = Master
+            '''
+            Design Frame
+            '''
+            self.Top = Frame(Master, height=50, bg='white')
+            self.Top.pack(fill=X)
+            self.Bottow = Frame(Master, height=600, bg="#99ccff")
+            self.Bottow.pack(fill=X)
+            '''
+            Design Top Frame
+            '''
+            self.Top_Frame_Titel = Label(self.Top, text="Action Hotel", font="arial 28 underline bold italic", fg="#004d99", bg="white")
+            self.Top_Frame_Titel.place(x=250, y=1)
+            self.Top_Frame_Time = Label(self.Top, text="Day&Time: " + time)
+            self.Top_Frame_Time.place(x=650, y=20)
+            '''
+            Design Bottow Frame
+            '''
+            self.Bottow_Frame_LbIDRoom = Label(self.Bottow, text="IDRoom: ", font="arial 12 underline bold", fg="#004d99",
                                                bg="#99ccff")
-            self.bottow_frame_lbIDRoom.place(x=82, y=20)
-            self.bottow_frame_enIDRoom = Entry(self.bottow, bg="white", bd=4, width=25)
-            self.bottow_frame_enIDRoom.place(x=155, y=20)
-            self.bottow_frame_lbPrice = Label(self.bottow, text="PriceRoom: ", font="arial 12 underline bold",
+            self.Bottow_Frame_LbIDRoom.place(x=82, y=20)
+            self.Bottow_Frame_EnIDRoom = Entry(self.Bottow, bg="white", bd=4, width=25)
+            self.Bottow_Frame_EnIDRoom.place(x=155, y=20)
+            self.Bottow_Frame_LbPrice = Label(self.Bottow, text="PriceRoom: ", font="arial 12 underline bold",
                                               fg="#004d99", bg="#99ccff")
-            self.bottow_frame_lbPrice.place(x=60, y=50)
-            self.bottow_frame_enPrice = Entry(self.bottow, bg="white", bd=4, width=25)
-            self.bottow_frame_enPrice.place(x=155, y=50)
-            self.bottow_frame_lbstatus = Label(self.bottow, text="StatusRoom: ", font="arial 12 underline bold",
+            self.Bottow_Frame_LbPrice.place(x=60, y=50)
+            self.Bottow_Frame_EnPrice = Entry(self.Bottow, bg="white", bd=4, width=25)
+            self.Bottow_Frame_EnPrice.place(x=155, y=50)
+            self.Bottow_Frame_LbStatus = Label(self.Bottow, text="StatusRoom: ", font="arial 12 underline bold",
                                                fg="#004d99", bg="#99ccff")
-            self.bottow_frame_lbstatus.place(x=50, y=80)
-            self.bottow_frame_enstatus = Entry(self.bottow, bg="white", bd=4, width=25)
-            self.bottow_frame_enstatus.place(x=155, y=80)
-            v = ["Day", "Night"]
-            k = ["VIP", "Nomarl"]
-            self.bottow_frame_lbTimeSpend = Label(self.bottow, text="UsedTime: ", font="arial 12 underline bold", bg="#99ccff",
+            self.Bottow_Frame_LbStatus.place(x=50, y=80)
+            self.Bottow_Frame_EnStatus = Entry(self.Bottow, bg="white", bd=4, width=25)
+            self.Bottow_Frame_EnStatus.place(x=155, y=80)
+            Option_CBKind = ["Day", "Night"]
+            Option_CBTimeSpend = ["VIP", "Nomarl"]
+            self.Bottow_Frame_LbTimeSpend = Label(self.Bottow, text="UsedTime: ", font="arial 12 underline bold", bg="#99ccff",
                                                   fg="#004d99")
-            self.bottow_frame_lbTimeSpend.place(x=68, y=110)
-            self.bottow_frame_CbTimeSpend = Combobox(self.bottow, values=v, width=23)
-            self.bottow_frame_CbTimeSpend.place(x=155, y=110)
-            self.bottow_frame_lbKind = Label(self.bottow, text="KindRoom: ", font="arial 12 underline bold", bg="#99ccff",
+            self.Bottow_Frame_LbTimeSpend.place(x=68, y=110)
+            self.Bottow_Frame_CbTimeSpend = Combobox(self.Bottow, values=Option_CBKind, width=23)
+            self.Bottow_Frame_CbTimeSpend.place(x=155, y=110)
+            self.Bottow_Frame_LbKind = Label(self.Bottow, text="KindRoom: ", font="arial 12 underline bold", bg="#99ccff",
                                              fg="#004d99")
-            self.bottow_frame_lbKind.place(x=64, y=140)
-            self.bottow_frame_CbKind = Combobox(self.bottow, values=k, width=23)
-            self.bottow_frame_CbKind.place(x=155, y=140)
-            self.bottow_frame_btnAdd = Button(self.bottow, text="Bill", font="arial 10 underline bold", bg="white",
-                                              fg="#004d99", width=15,command=self.bill)
-            self.bottow_frame_btnAdd.place(x=20, y=180)
+            self.Bottow_Frame_LbKind.place(x=64, y=140)
+            self.Bottow_Frame_CbKind = Combobox(self.Bottow, values=Option_CBTimeSpend, width=23)
+            self.Bottow_Frame_CbKind.place(x=155, y=140)
+            self.Bottow_Frame_BtnAdd = Button(self.Bottow, text="Bill", font="arial 10 underline bold", bg="white",
+                                              fg="#004d99", width=15, command=self.BillForCustomer)
+            self.Bottow_Frame_BtnAdd.place(x=20, y=180)
 
-            self.bottow_frame_btnCheckOut = Button(self.bottow, text="CheckOut", font="arial 10 underline bold", bg="white",
-                                                  fg="#004d99", width=15,command=self.clear)
-            self.bottow_frame_btnCheckOut.place(x=20, y=220)
-            self.bottow_frame_btnClear = Button(self.bottow, text="Clear", font="arial 10 underline bold", bg="white",
-                                                fg="#004d99", width=15,command=self.addin)
-            self.bottow_frame_btnClear.place(x=20, y=260)
+            self.Bottow_Frame_BtnCheckOut = Button(self.Bottow, text="CheckOut", font="arial 10 underline bold", bg="white",
+                                                   fg="#004d99", width=15, command=self.CheckOutForCustomer)
+            self.Bottow_Frame_BtnCheckOut.place(x=20, y=220)
+            self.Bottow_Frame_BtnClear = Button(self.Bottow, text="ClearRoom", font="arial 10 underline bold", bg="white",
+                                                fg="#004d99", width=15, command=self.ReturnRoom)
+            self.Bottow_Frame_BtnClear.place(x=20, y=260)
 
-            g = open("actionhotel.txt", "r", encoding="utf-8")
-            a = g.readlines()
-            self.scroll = Scrollbar(self.bottow, width=20)
-            self.text = Listbox(self.bottow, yscrollcommand=self.scroll.set, width=65, font="arial 10 underline bold italic", bd=5)
-            self.scroll.config(command=self.text.yview)
-            for i in range(len(a)):
-                self.text.insert(END, str(i) + " " + a[i])
-            self.text.place(x=20, y=300)
-            self.j = IntVar()
-            self.bottow_frame_DVbar=Checkbutton(self.bottow,text="Bar_mini:50000",bg="#99ccff",variable=self.j,font="arial 10 underline bold",fg="#004d99")
-            self.bottow_frame_DVbar.place(x=380,y=20)
-            self.i=IntVar()
+            Open_File = open("actionhotel.txt", "r", encoding="utf-8")
+            List_Show = Open_File.readlines()
+            self.Scroll = Scrollbar(self.Bottow, width=20)
+            self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65, font="arial 10 underline bold italic", bd=5)
+            self.Scroll.config(command=self.List_Box.yview)
+            for i in range(len(List_Show)):
+                self.List_Box.insert(END, str(i) + " " + List_Show[i])
+            self.List_Box.place(x=20, y=300)
+            self.Bar = IntVar()
+            self.Bottow_Frame_DVbar=Checkbutton(self.Bottow, text="Bar_mini:50000", bg="#99ccff", variable=self.Bar, font="arial 10 underline bold", fg="#004d99")
+            self.Bottow_Frame_DVbar.place(x=380, y=20)
+            self.Food=IntVar()
 
-            self.g=IntVar()
-            self.bottow_frame_DVFood=Checkbutton(self.bottow,text="Food_Room:40000",bg="#99ccff",variable=self.i,font="arial 10 underline bold",fg="#004d99")
-            self.bottow_frame_DVFood.place(x=380,y=50)
-            self.bottow_frame_DVGif=Checkbutton(self.bottow,text="GIF_customer:30000",bg="#99ccff",variable=self.g,font="arial 10 underline bold",fg="#004d99")
-            self.bottow_frame_DVGif.place(x=380,y=80)
+            self.Gif=IntVar()
+            self.Bottow_Frame_DVFood=Checkbutton(self.Bottow, text="Food_Room:40000", bg="#99ccff", variable=self.Food, font="arial 10 underline bold", fg="#004d99")
+            self.Bottow_Frame_DVFood.place(x=380, y=50)
+            self.Bottow_Frame_DVGif=Checkbutton(self.Bottow, text="GIF_customer:30000", bg="#99ccff", variable=self.Gif, font="arial 10 underline bold", fg="#004d99")
+            self.Bottow_Frame_DVGif.place(x=380, y=80)
 
-            self.bottow_frame_lbbill = Label(self.bottow, text="Payment of service invoices ", font="arial 15 underline bold italic", bg="#99ccff",
-                                     fg="#004d99")
-            self.bottow_frame_lbbill.place(x=600, y=20)
-        # design bo viền
-            self.bottow_frame_lbVien=Label(self.bottow,height=50)
-            self.bottow_frame_lbVien.place(x=540,y=0)
+            self.Bottow_Frame_Lbbill = Label(self.Bottow, text="Payment of service invoices ", font="arial 15 underline bold italic", bg="#99ccff",
+                                             fg="#004d99")
+            self.Bottow_Frame_Lbbill.place(x=600, y=20)
+            '''
+            Design Bo viền
+            '''
+            self.Bottow_Frame_LbVien=Label(self.Bottow, height=50)
+            self.Bottow_Frame_LbVien.place(x=540, y=0)
 
-
+    '''
+    Hãm xử lý ngoại lệ nhập và ghi dữ liệu từ View Về Object
+    '''
     def GetModel(self):
         check=False
-        if(self.bottow_frame_enPrice.get().isdigit() and self.bottow_frame_enIDRoom.get().isdigit()):
+        if(self.Bottow_Frame_EnPrice.get().isdigit() and self.Bottow_Frame_EnIDRoom.get().isdigit()):
               check=True
         if(check==True):
-            self.room=Room(self.bottow_frame_enIDRoom.get(),self.bottow_frame_enPrice.get(),self.bottow_frame_CbKind.get(),self.bottow_frame_CbTimeSpend.get(),self.bottow_frame_enstatus.get())
+            self.room=Room(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
             if(self.room.getID()=="" or self.room.getTime()=="" or self.room.getKind()=="" or self.room.getPrice()==""or self.room.getStatus()==""):
                 return mb.showerror("False","Bạn cần nhập đầy đủ thông tin")
             else:
-                c=["ID: "+self.room.getID()," Price: "+self.room.getPrice()," Kind: "+self.room.getKind()," UsedTime: "+self.room.getTime()," Status: "+self.room.getStatus()+"\n"]
+                Data_Room=["ID: "+self.room.getID()," Price: "+self.room.getPrice()," Kind: "+self.room.getKind()," UsedTime: "+self.room.getTime()," Status: "+self.room.getStatus()+"\n"]
 
-            return c
+            return Data_Room
         else:
             return mb.showerror("Error","Price and ID are Number")
-    def clear(self):
-        f=open("actionhotel.txt",'r',encoding="utf-8")
-        a=f.readlines()
-        f.close()
+    '''
+    Hàm set lại dữ liệu từ View Để sử dụng cho Fun BillForCustomer
+    '''
+    def Model(self):
+        self.room = Room(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
+        Data_Room=[self.Bottow_Frame_EnIDRoom.get(), int(self.Bottow_Frame_EnPrice.get()), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get()]
+        return Data_Room
+    def CheckOutForCustomer(self):
+        Open_File=open("actionhotel.txt",'r',encoding="utf-8")
+        List_Show=Open_File.readlines()
+        Open_File.close()
 
-        if (self.bottow_frame_enIDRoom == ""):
+        if (self.Bottow_Frame_EnIDRoom == ""):
             return mb.showerror("Error", "Bạn chưa nhập Thông Tin Tìm Kiếm")
         else:
-            for i in range(len(a)):
-                if(self.bottow_frame_enIDRoom.get() in a[i]):
-                     b=a[i]
-        g=open("actionhotel.txt","w",encoding="utf-8")
-        for i in a:
-            if (i!=b):
-                g.write(i)
-        g.close()
+            for i in range(len(List_Show)):
+                if(self.Bottow_Frame_EnIDRoom.get() in List_Show[i]):
+                     Data_Show=List_Show[i]
+        Write_File=open("actionhotel.txt","w",encoding="utf-8")
+        for i in List_Show:
+            if (i!=Data_Show):
+                Write_File.write(i)
+        Write_File.close()
 
-    def addin(self):
-        gre = self.GetModel()
-        f = open("dataroom.txt", "a", encoding="utf-8")
-        for i in gre:
-            f.write(i)
-        f.close()
-    def bill(self):
+    def ReturnRoom(self):
+        Gre = self.GetModel()
+        Open_File = open("dataroom.txt", "a", encoding="utf-8")
+        for i in Gre:
+            Open_File.write(i)
+        Open_File.close()
+    def BillForCustomer(self):
+        Gre=self.Model()
+        if (self.Food.get() == 1 and self.Bar.get() == 1 and self.Gif.get() == 1):
+            Gre[1] += 100000
+        elif(self.Food.get() == 0 and self.Bar.get() == 0 and self.Gif.get() == 0):
+            Gre[1] = self.Bottow_Frame_EnPrice.get()
+        elif(self.Food.get() == 1):
+           Gre[1]+=40000
 
-        c=[self.bottow_frame_enIDRoom.get(),self.bottow_frame_CbKind.get(),self.bottow_frame_enstatus.get(),self.bottow_frame_CbTimeSpend.get(),int(self.bottow_frame_enPrice.get())]
+        elif(self.Bar.get() == 1):
+            Gre[1] += 50000
 
-        if (self.i.get() == 1 and self.j.get() == 1 and self.g.get() == 1):
-            c[4] += 100000
-        elif(self.i.get() == 0 and self.j.get() == 0 and self.g.get() == 0):
-            c[4] = self.bottow_frame_enPrice.get()
-        elif(self.i.get()==1):
-           c[4]+=40000
+        elif(self.Gif.get() == 1):
+            Gre[1]+=30000
+        self.Data_Show = ("IDRoom: " + Gre[0] + "\n", "KindRoom: " + Gre[2] + "\n", "NameCustomer: " + Gre[4] + "\n",
+             "TimeSpend: " + Gre[3] + "\n", "PriceEnd: " + str(Gre[1]))
 
-        elif(self.j.get()==1):
-            c[4] += 50000
-
-        elif(self.g.get()==1):
-            c[4]+=30000
-        else:
-            c[4]+=80000
-        b = ("IDRoom: " + c[0] + "\n", "KindRoom: " + c[1] + "\n", "NameCustomer: " + c[2] + "\n",
-             "TimeSpend: " + c[3] + "\n", "PriceEnd: " +str(c[4]))
-
-        self.bottow_frame_bill = Text(self.bottow,font="arial 12 bold italic",width=30,height=15,bd=4)
-        self.bottow_frame_bill.insert(END,b)
-        self.bottow_frame_bill.place(x=600, y=80)
-    def setup(self,event=None):
-        g = open("actionhotel.txt", "r", encoding="utf-8")
-        a = g.readlines()
-        self.scroll = Scrollbar(self.bottow, width=20)
-        self.text = Listbox(self.bottow, yscrollcommand=self.scroll.set, width=65,
-                            font="arial 10 underline bold italic", bd=5)
-        self.scroll.config(command=self.text.yview)
-        for i in range(len(a)):
-            self.text.insert(END, str(i) + " " + a[i])
-        self.text.place(x=20, y=300)
+        self.Bottow_Frame_Bill = Text(self.Bottow, font="arial 12 bold italic", width=30, height=15, bd=4)
+        self.Bottow_Frame_Bill.insert(END, self.Data_Show)
+        self.Bottow_Frame_Bill.place(x=600, y=80)
+    '''
+    Sử lý Nút Enter để Upload lại dữ liệu cho ListBox
+    '''
+    def Upload(self,event=None):
+        Open_File = open("actionhotel.txt", "r", encoding="utf-8")
+        List_Show = Open_File.readlines()
+        self.Scroll = Scrollbar(self.Bottow, width=20)
+        self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65,
+                                font="arial 10 underline bold italic", bd=5)
+        self.Scroll.config(command=self.List_Box.yview)
+        for i in range(len(List_Show)):
+            self.List_Box.insert(END, str(i) + " " + List_Show[i])
+        self.List_Box.place(x=20, y=300)
 
 def main3():
-    windown = tk.ThemedTk()
-    app = BAction(windown)
-    windown.get_themes()
-    windown.iconbitmap("icon.ico")
-    windown.set_theme("keramik")
-    windown.bind('<Return>',app.setup)
-    windown.title("Business activities")
-    windown.geometry("950x550+350+200")
-    windown.resizable(False, False)
-    windown.mainloop()
+    Root_BAction = tk.ThemedTk()
+    app = BAction(Root_BAction)
+    Root_BAction.get_themes()
+    Root_BAction.iconbitmap("icon.ico")
+    Root_BAction.set_theme("keramik")
+    Root_BAction.bind('<Return>',app.Upload)
+    Root_BAction.title("Business activities")
+    Root_BAction.geometry("950x550+350+200")
+    Root_BAction.resizable(False, False)
+    Root_BAction.mainloop()
 if __name__=="__main__":
     main3()

@@ -7,128 +7,127 @@ from View.GUIRoom import  main1
 from View.GUIBAction import main3
 from tkinter import messagebox as mb
 from PIL import  ImageTk,Image
-from  View.feedBackCustomer import main4
+from View.feedBackCustomer import main4
 date=datetime.datetime.now().date()
 date=str(date)
 time=datetime.datetime.now().time()
 time=str(time)
 class App(object):
-    def __init__(self,master):
-        self.master=master
-        #--Frame
-        self.top=Frame(master,height=150,bg='white')
-        self.top.pack(fill=X)
-        self.bottow=Frame(master,height=500,bg="#99ccff")
-        self.bottow.pack(fill=X)
-        # top frame design
-        self.top_icon_label1=Label(self.top,text="AndTee's Hotel",font="arial 25 underline bold italic",bg='white',fg='#004d99')
-        self.top_icon_label1.place(x=230,y=50)
-        self.date=Label(self.top,text="Today is:"+date+"Time:"+time,font="arial 12 italic",fg="black",bg="#eff5f5")
-        self.date.place(x=605,y=120)
-        # self.img=ImageTk.PhotoImage(Image.open("View\\iconnha.ico","r"))
-        # self.bottow_lb=Label(self.top,image=self.img).place(x=20,y=20)
-        # bottow frame design
-        self.bottow_btnCustomer=Button(self.bottow,text="Data Customer",width=15,font="arial 12 underline bold italic",fg="#004d99",bg="white",bd=4,command=self.datacus)
-        self.bottow_btnCustomer.place(x=20,y=50)
-        self.bottow_btnRoom = Button(self.bottow, text="Data Room", width=15, font="arial 12 underline bold italic", fg="#004d99",
-                                         bg="white", bd=4,command=self.dataroom)
-        self.bottow_btnRoom.place(x=20, y=100)
-        self.bottow_btnAction = Button(self.bottow, text="Business activities", width=15, font="arial 12 underline bold italic", fg="#004d99",
-                                         bg="white", bd=4,command=self.Baction)
-        self.bottow_btnAction.place(x=20, y=150)
-        self.bottow_btnFeedBack=Button(self.bottow,text="FeedBackCustomer",font="arial 12 underline bold italic", fg="#004d99",bg="white", bd=4,command=self.FeedBack).place(x=20,y=200)
-        self.bottow_status=Label(self.bottow,text="Current information of the hotel",font="arial 20 underline bold italic",bg="#99ccff",fg="#004d99")
-        self.bottow_status.place(x=280,y=10)
-        g = open("dataroom.txt", "r", encoding="utf-8")
-        a = g.readlines()
-        self.scroll = Scrollbar(self.bottow, width=20)
-        self.scroll.place(x=615, y=230)
-        self.text = Listbox(self.bottow, yscrollcommand=self.scroll.set, width=65, font="arial 13 bold", bd=5)
-        self.scroll.config(command=self.text.yview)
-        for i in range(len(a)):
-            self.text.insert(END, str(i) + " " + a[i])
-        self.text.place(x=230, y=80)
-        # design vien
-        self.bottow_frame_lbvien=Label(self.bottow,height=50).place(x=200,y=1)
-    def setup(self,event=None):
-        g = open("dataroom.txt", "r", encoding="utf-8")
-        a = g.readlines()
-        self.scroll = Scrollbar(self.bottow, width=20)
-        self.scroll.place(x=615, y=230)
-        self.text = Listbox(self.bottow, yscrollcommand=self.scroll.set, width=65, font="arial 13 bold", bd=5)
-        self.scroll.config(command=self.text.yview)
-        for i in range(len(a)):
-            self.text.insert(END, str(i) + " " + a[i])
-        self.text.place(x=230, y=80)
-    def datacus(self):
-        cus=main()
-    def dataroom(self):
-        room=main1()
-    def Baction(self):
-        act=main3()
-    def FeedBack(self):
-        feed=main4()
-def onclick(event=None):
-    name = entry_User.get()
-    passw = entry_Pass.get()
-    a = "Bạn Nhập sai thông tin tài khoản"
-    b = "Bạn chưa nhập đầy đủ thông tin"
-    if (name == "AndTee" and passw == "123456"):
-        return show2()
-    elif (name == "" or passw == ""):
-        return mb.showerror("Error", b)
+    def __init__(self, Master):
+        self.Master=Master
+        '''
+        Design Frame
+        '''
+        self.Top=Frame(Master, height=150, bg='white')
+        self.Top.pack(fill=X)
+        self.Bottow=Frame(Master, height=500, bg="#99ccff")
+        self.Bottow.pack(fill=X)
+        '''
+        Top frame design
+        '''
+        self.Top_icon_label1=Label(self.Top, text="AndTee's Hotel", font="arial 25 underline bold italic", bg='white', fg='#004d99')
+        self.Top_icon_label1.place(x=230,y=50)
+        self.Date=Label(self.Top, text="Today is:" + date + "Time:" + time, font="arial 12 italic", fg="black", bg="#eff5f5")
+        self.Date.place(x=605, y=120)
+        '''
+        Bottow frame design
+        '''
+        self.Bottow_BtnCustomer=Button(self.Bottow, text="Data Customer", width=15, font="arial 12 underline bold italic", fg="#004d99", bg="white", bd=4, command=self.Open_FrameCustomer)
+        self.Bottow_BtnCustomer.place(x=20, y=50)
+        self.Bottow_BtnRoom = Button(self.Bottow, text="Data Room", width=15, font="arial 12 underline bold italic", fg="#004d99",
+                                     bg="white", bd=4, command=self.Open_FrameRoom)
+        self.Bottow_BtnRoom.place(x=20, y=100)
+        self.Bottow_BtnAction = Button(self.Bottow, text="Business activities", width=15, font="arial 12 underline bold italic", fg="#004d99",
+                                       bg="white", bd=4, command=self.Open_FrameBAction)
+        self.Bottow_BtnAction.place(x=20, y=150)
+        self.Bottow_BtnFeedBack=Button(self.Bottow, text="FeedBackCustomer", font="arial 12 underline bold italic", fg="#004d99", bg="white", bd=4, command=self.Open_FrameFeedBack).place(x=20, y=200)
+        self.Bottow_Status=Label(self.Bottow, text="Current information of the hotel", font="arial 20 underline bold italic", bg="#99ccff", fg="#004d99")
+        self.Bottow_Status.place(x=280, y=10)
+        Open_File = open("dataroom.txt", "r", encoding="utf-8")
+        List_Show = Open_File.readlines()
+        self.Scroll = Scrollbar(self.Bottow, width=20)
+        self.Scroll.place(x=615, y=230)
+        self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65, font="arial 13 bold", bd=5)
+        self.Scroll.config(command=self.List_Box.yview)
+        for i in range(len(List_Show)):
+            self.List_Box.insert(END, str(i) + " " + List_Show[i])
+        self.List_Box.place(x=230, y=80)
+        '''
+        Design Bo Viền
+        '''
+        self.Bottow_Frame_Lbvien=Label(self.Bottow, height=50).place(x=200, y=1)
+    '''
+    Hàm xử lý Upload lại dữ liệu cho LixtBox
+    '''
+    def Upload(self,event=None):
+        Open_File = open("dataroom.txt", "r", encoding="utf-8")
+        List_Show = Open_File.readlines()
+        self.Scroll = Scrollbar(self.Bottow, width=20)
+        self.Scroll.place(x=615, y=230)
+        self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65, font="arial 13 bold", bd=5)
+        self.Scroll.config(command=self.List_Box.yview)
+        for i in range(len(List_Show)):
+            self.List_Box.insert(END, str(i) + " " + List_Show[i])
+        self.List_Box.place(x=230, y=80)
+    def Open_FrameCustomer(self):
+        main()
+    def Open_FrameRoom(self):
+        main1()
+    def Open_FrameBAction(self):
+        main3()
+    def Open_FrameFeedBack(self):
+        main4()
+'''
+Hàm xử lý Nút Enter cho SignIN
+'''
+def Onclick(event=None):
+    UserName = Entry_User.get()
+    Pass = Entry_Pass.get()
+    if (UserName == "AndTee" and Pass == "123456"):
+        return Open_FrameMenu()
+    elif (UserName == "" or Pass == ""):
+        return mb.showerror("Error", "Bạn chưa nhập đầy đủ thông tin")
     else:
-        return mb.showerror("Error", a)
-    pass
-windown=tk.ThemedTk()
-windown.get_themes()
-windown.set_theme("keramik")
-windown.iconbitmap("icon.ico")
-windown.title("Đăng Nhập Account")
-windown.geometry("450x150+150+150")
-windown.resizable(False,False)
-windown.bind('<Return>',onclick)
-frame=Frame(windown,height=150,bg="#99ccff")
-frame.pack(fill=X)
-        #--Design SignIn---
-label_user=Label(frame,text="UserName: ",font="arial 12 underline bold italic",bg="#99ccff",fg="#004d99")
-label_user.place(x=20,y=20)
-label_Pass=Label(frame,text="PassWork: ",font="arial 12 underline bold italic",bg="#99ccff",fg="#004d99")
-label_Pass.place(x=20,y=50)
-entry_User=Entry(frame,bg="white",bd=5,width=30)
-entry_User.place(x=110,y=20)
-entry_Pass = Entry(frame, bg="white", bd=5, width=30,show="*")
-entry_Pass.place(x=110, y=50)
+        return mb.showerror("Error", "Bạn Nhập sai thông tin tài khoản")
+Root_SignIn=tk.ThemedTk()
+Root_SignIn.get_themes()
+Root_SignIn.set_theme("keramik")
+Root_SignIn.iconbitmap("icon.ico")
+Root_SignIn.title("Đăng Nhập Account")
+Root_SignIn.geometry("450x150+150+150")
+Root_SignIn.resizable(False, False)
+Root_SignIn.bind('<Return>', Onclick)
 
+'''
+        --Design SignIn---
+'''
+Frame_SignIn=Frame(Root_SignIn, height=150, bg="#99ccff")
+Frame_SignIn.pack(fill=X)
+Label_User=Label(Frame_SignIn, text="UserName: ", font="arial 12 underline bold italic", bg="#99ccff", fg="#004d99")
+Label_User.place(x=20, y=20)
+Label_Pass=Label(Frame_SignIn, text="PassWork: ", font="arial 12 underline bold italic", bg="#99ccff", fg="#004d99")
+Label_Pass.place(x=20, y=50)
+Entry_User=Entry(Frame_SignIn, bg="white", bd=5, width=30)
+Entry_User.place(x=110,y=20)
+Entry_Pass = Entry(Frame_SignIn, bg="white", bd=5, width=30, show="*")
+Entry_Pass.place(x=110, y=50)
+def Open_FrameMenu():
+    Frame_Menu() and Root_SignIn.destroy()
 
-def gameon():
-    name = entry_User.get()
-    passw = entry_Pass.get()
-    a = "Bạn Nhập sai thông tin tài khoản"
-    b = "Bạn chưa nhập đầy đủ thông tin"
-    if (name == "AndTee" and passw == "123456"):
-        return show2()
-    elif (name == "" or passw == ""):
-        return mb.showerror("Error", b)
-    else:
-        return mb.showerror("Error", a)
-def show2():
-    main_frame2()
+Btn_SignIn=Button(Frame_SignIn, text="Sign In", font="arial 10 underline bold ", fg="Green", width=12, command=Onclick)
+Btn_SignIn.place(x=60, y=100)
+Btn_Cancel = Button(Frame_SignIn, text="Cancel", font="arial 10 underline bold ", fg="Red", width=12, command=Root_SignIn.destroy)
+Btn_Cancel.place(x=260, y=100)
+def Frame_Menu():
+    Frame_Menu=tk.ThemedTk()
 
-btn_sign=Button(frame,text="Sign In",font="arial 10 underline bold ",fg="Green",width=12,command=onclick)
-btn_sign.place(x=60,y=100)
-btn_Cancel = Button(frame, text="Cancel", font="arial 10 underline bold ", fg="Red", width=12,command=windown.destroy)
-btn_Cancel.place(x=260, y=100)
-def main_frame2():
-    windown=tk.ThemedTk()
-
-    app=App(windown)
-    windown.get_themes()
-    windown.iconbitmap("icon.ico")
-    windown.set_theme("keramik")
-    windown.title("Trang Chủ")
-    windown.bind('<Return>',app.setup)
-    windown.geometry("850x550+350+200")
-    windown.resizable(False,False)
-    windown.mainloop()
-windown.mainloop()
+    app=App(Frame_Menu)
+    Frame_Menu.get_themes()
+    Frame_Menu.iconbitmap("icon.ico")
+    Frame_Menu.set_theme("keramik")
+    Frame_Menu.title("Trang Chủ")
+    Frame_Menu.bind('<Return>', app.Upload)
+    Frame_Menu.geometry("850x550+350+200")
+    Frame_Menu.resizable(False, False)
+    Frame_Menu.mainloop()
+Root_SignIn.mainloop()
