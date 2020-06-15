@@ -1,10 +1,9 @@
 from tkinter import *
 import datetime
 from tkinter.ttk import Combobox
-from PIL import ImageTk,Image
 from ttkthemes import themed_tk as tk
-from tkinter import ttk
-from View.Room import Room
+from MVC.Model.Room import Room
+from MVC.Controller.OpenAndCloseFile import Read_File_BAction,Write_File_BAction,AWrite_File_Room
 from tkinter import messagebox as mb
 time=datetime.datetime.now().ctime()
 time=str(time)
@@ -66,7 +65,7 @@ class BAction(object):
                                                 fg="#004d99", width=15, command=self.ReturnRoom)
             self.Bottow_Frame_BtnClear.place(x=20, y=260)
 
-            Open_File = open("actionhotel.txt", "r", encoding="utf-8")
+            Open_File =Read_File_BAction()
             List_Show = Open_File.readlines()
             self.Scroll = Scrollbar(self.Bottow, width=20)
             self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65, font="arial 10 underline bold italic", bd=5)
@@ -95,7 +94,7 @@ class BAction(object):
             self.Bottow_Frame_LbVien.place(x=540, y=0)
 
     '''
-    Hãm xử lý ngoại lệ nhập và ghi dữ liệu từ View Về Object
+    Hãm xử lý ngoại lệ nhập và ghi dữ liệu từ MVC Về Object
     '''
     def GetModel(self):
         check=False
@@ -112,14 +111,14 @@ class BAction(object):
         else:
             return mb.showerror("Error","Price and ID are Number")
     '''
-    Hàm set lại dữ liệu từ View Để sử dụng cho Fun BillForCustomer
+    Hàm set lại dữ liệu từ MVC Để sử dụng cho Fun BillForCustomer
     '''
     def Model(self):
         self.room = Room(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
         Data_Room=[self.Bottow_Frame_EnIDRoom.get(), int(self.Bottow_Frame_EnPrice.get()), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get()]
         return Data_Room
     def CheckOutForCustomer(self):
-        Open_File=open("actionhotel.txt",'r',encoding="utf-8")
+        Open_File=Read_File_BAction()
         List_Show=Open_File.readlines()
         Open_File.close()
 
@@ -129,7 +128,7 @@ class BAction(object):
             for i in range(len(List_Show)):
                 if(self.Bottow_Frame_EnIDRoom.get() in List_Show[i]):
                      Data_Show=List_Show[i]
-        Write_File=open("actionhotel.txt","w",encoding="utf-8")
+        Write_File=Write_File_BAction()
         for i in List_Show:
             if (i!=Data_Show):
                 Write_File.write(i)
@@ -137,7 +136,7 @@ class BAction(object):
 
     def ReturnRoom(self):
         Gre = self.GetModel()
-        Open_File = open("dataroom.txt", "a", encoding="utf-8")
+        Open_File = AWrite_File_Room()
         for i in Gre:
             Open_File.write(i)
         Open_File.close()
@@ -165,7 +164,7 @@ class BAction(object):
     Sử lý Nút Enter để Upload lại dữ liệu cho ListBox
     '''
     def Upload(self,event=None):
-        Open_File = open("actionhotel.txt", "r", encoding="utf-8")
+        Open_File = Read_File_BAction()
         List_Show = Open_File.readlines()
         self.Scroll = Scrollbar(self.Bottow, width=20)
         self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65,

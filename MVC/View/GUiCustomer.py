@@ -1,10 +1,10 @@
 from tkinter import *
 import datetime
 from ttkthemes import themed_tk as tk
-from tkinter import ttk
 from tkinter.ttk import Combobox
-from View.Customer import Customer
+from MVC.Model.Customer import Customer
 from tkinter import messagebox as mb
+from MVC.Controller.OpenAndCloseFile import Read_File_Customer,Write_File_Customer
 time=datetime.datetime.now().ctime()
 time=str(time)
 class Data_Customer(object):
@@ -58,7 +58,7 @@ class Data_Customer(object):
             self.Bottow_Frame_LbVien=Label(self.Bottow, height=9)
             self.Bottow_Frame_LbVien.place(x=380, y=1)
     '''
-    Hàm lấy giá trị nhập từ View để ghi vào object
+    Hàm lấy giá trị nhập từ MVC để ghi vào object
     '''
     def GetModel(self):
         check=False
@@ -76,11 +76,11 @@ class Data_Customer(object):
             return mb.showerror("Error","Phone and IDCard are Number")
     def Add_NewCustomer(self):
         Gre=self.GetModel()
-        Write_File = open("datacus.txt", "a", encoding="utf-8")
+        Write_File = Write_File_Customer()
         for i in Gre:
             Write_File.write(i)
         Write_File.close()
-        Open_File=open("datacus.txt","r",encoding="utf-8")
+        Open_File=Read_File_Customer()
         List_Show=Open_File.readlines()
         self.Scroll=Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)
@@ -90,7 +90,7 @@ class Data_Customer(object):
             self.List_Box.insert(END, str(i) + " " + List_Show[i])
         self.List_Box.place(x=20, y=230)
     def Search_Customer(self):
-        Open_File=open("datacus.txt",'r',encoding="utf-8")
+        Open_File=Read_File_Customer()
         List_Show=Open_File.readlines()
         Open_File.close()
         Data_Show=list()

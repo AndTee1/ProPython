@@ -2,8 +2,9 @@ from tkinter import *
 import datetime
 from ttkthemes import themed_tk as tk
 from tkinter.ttk import Combobox
-from View.Room import Room
+from MVC.Model.Room import Room
 from tkinter import messagebox as mb
+from MVC.Controller.OpenAndCloseFile import Read_File_Room,WWrite_File_Room,AWrite_File_Room,Write_File_BAction
 time=datetime.datetime.now().ctime()
 time=str(time)
 class DataRoom(object):
@@ -64,7 +65,7 @@ class DataRoom(object):
                                             fg="#004d99", width=15, command=self.ReturnRoom)
         self.Bottow_Frame_BtnClear.place(x=420, y=120)
     '''
-    Fun xử lý ngoại lệ nhập và ghi dữ liệu từ View vào Object
+    Fun xử lý ngoại lệ nhập và ghi dữ liệu từ MVC vào Object
     '''
     def GetModel(self):
         check=False
@@ -83,11 +84,11 @@ class DataRoom(object):
 
     def AddNewRoom(self):
         Gre=self.GetModel()
-        Write_File = open("dataroom.txt", "a", encoding="utf-8")
+        Write_File = AWrite_File_Room()
         for i in Gre:
             Write_File.write(i)
         Write_File.close()
-        Open_File=open("dataroom.txt","r",encoding="utf-8")
+        Open_File=Read_File_Room()
         List_Show=Open_File.readlines()
         self.Scroll=Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)
@@ -98,7 +99,7 @@ class DataRoom(object):
         self.List_Box.place(x=20, y=230)
     def CheckInForCustomer(self):
         Gre=self.GetModel()
-        Write_File=open("actionhotel.txt","a",encoding="utf-8")
+        Write_File=Write_File_BAction()
         for i in Gre:
             Write_File.write(i)
         Write_File.close()
@@ -106,7 +107,7 @@ class DataRoom(object):
     Fun Return lại các phòng còn trống
     '''
     def ReturnRoom(self):
-        Open_File=open("dataroom.txt",'r',encoding="utf-8")
+        Open_File=Read_File_Room()
         List_Show=Open_File.readlines()
         Open_File.close()
 
@@ -116,7 +117,7 @@ class DataRoom(object):
             for i in range(len(List_Show)):
                 if(self.Bottow_Frame_EnIDRoom.get() in List_Show[i]):
                      Data_Show=List_Show[i]
-        Write_File=open("dataroom.txt","w",encoding="utf-8")
+        Write_File=WWrite_File_Room()
         for i in List_Show:
             if (i!=Data_Show):
                 Write_File.write(i)

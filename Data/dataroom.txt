@@ -1,5 +1,6 @@
 ID: 103 Price: 50000 Kind: Nomarl UsedTime: Night Status: Emty
 ID: 104 Price: 50000 Kind: Nomarl UsedTime: Night Status: Emty
 ID: 105 Price: 50000 Kind: Nomarl UsedTime: Night Status: Emty
-ID: 107 Price: 50000 Kind: VIP UsedTime: Day Status: Emty
 ID: 108 Price: 50000 Kind: VIP UsedTime: Day Status: Emty
+ID: 107 Price: 50000 Kind: VIP UsedTime: Day Status: Emty
+ID: 109 Price: 60000 Kind: Nomarl UsedTime: Night Status: Emty

@@ -1,4 +1,4 @@
-f=open("datacus.txt","r",encoding="utf-8")
+f=open("../Data/datacus.txt", "r", encoding="utf-8")
 a=f.readlines()
 f.close()
 b=list()

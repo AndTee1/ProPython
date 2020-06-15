@@ -3,6 +3,7 @@ import datetime
 import tkinter as tk
 from pandas import DataFrame
 import matplotlib.pyplot as plt
+from MVC.Controller.OpenAndCloseFile import Read_File_FeedBack,Write_File_FeedBack
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 from ttkthemes import themed_tk as tk
 
@@ -60,7 +61,7 @@ class Feedback(object):
     Fun Cộng Điểm FeedBack vào Valus của dict ở Fun Accept()
     '''
     def FeedBack(self):
-        Open_File = open("feedback.txt", "r", encoding="utf-8")
+        Open_File = Read_File_FeedBack()
         List_Show = Open_File.read().split(" ")
         Open_File.close()
         self.DataFile = list()
@@ -85,7 +86,7 @@ class Feedback(object):
         Date_Show = list()
         for i in range(len(self.DataFile)):
             Date_Show = [str(self.DataFile[0]) + " ", str(self.DataFile[1]) + " ", str(self.DataFile[2]) + " ", str(self.DataFile[3]) + " ", str(self.DataFile[4])]
-        Write_File = open("feedback.txt", "w", encoding="utf-8")
+        Write_File = Write_File_FeedBack()
         for i in Date_Show:
             Write_File.write(i)
         Write_File.close()
@@ -121,6 +122,6 @@ def main4():
 
 
 if __name__ == "__main__":
-    print("in")
+
     main4()
-    print("out")
+

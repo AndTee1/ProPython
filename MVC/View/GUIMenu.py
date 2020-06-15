@@ -1,13 +1,12 @@
 from tkinter import *
 import datetime
 from ttkthemes import themed_tk as tk
-from tkinter import ttk
-from  View.GUiCustomer import main
-from View.GUIRoom import  main1
-from View.GUIBAction import main3
+from MVC.View.GUiCustomer import main
+from MVC.View.GUIRoom import  main1
+from MVC.View.GUIBAction import main3
 from tkinter import messagebox as mb
-from PIL import  ImageTk,Image
-from View.feedBackCustomer import main4
+from MVC.Controller.OpenAndCloseFile import Read_File_Room
+from MVC.View.feedBackCustomer import main4
 date=datetime.datetime.now().date()
 date=str(date)
 time=datetime.datetime.now().time()
@@ -43,7 +42,7 @@ class App(object):
         self.Bottow_BtnFeedBack=Button(self.Bottow, text="FeedBackCustomer", font="arial 12 underline bold italic", fg="#004d99", bg="white", bd=4, command=self.Open_FrameFeedBack).place(x=20, y=200)
         self.Bottow_Status=Label(self.Bottow, text="Current information of the hotel", font="arial 20 underline bold italic", bg="#99ccff", fg="#004d99")
         self.Bottow_Status.place(x=280, y=10)
-        Open_File = open("dataroom.txt", "r", encoding="utf-8")
+        Open_File = open("../../Data/dataroom.txt", "r", encoding="utf-8")
         List_Show = Open_File.readlines()
         self.Scroll = Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)
@@ -60,7 +59,7 @@ class App(object):
     Hàm xử lý Upload lại dữ liệu cho LixtBox
     '''
     def Upload(self,event=None):
-        Open_File = open("dataroom.txt", "r", encoding="utf-8")
+        Open_File = Read_File_Room()
         List_Show = Open_File.readlines()
         self.Scroll = Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)
