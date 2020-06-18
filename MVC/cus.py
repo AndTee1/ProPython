@@ -12,13 +12,9 @@ class Customer:
         return self.PhoneCustomer
     def setPhone(self,PhoneCustomer):
         self.PhoneCustomer=PhoneCustomer
-    def getID(self):
+    def getCMND(self):
         return self.CMNDCustomer
     def setCMND(self,CMNDCustomer):
         self.CMNDCustomer=CMNDCustomer
     def getTime(self):
         return self.UsedTime
-    def setTime(self,UsedTime):
-        self.UsedTime=UsedTime
-
-

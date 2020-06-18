@@ -3,7 +3,7 @@ import datetime
 from tkinter.ttk import Combobox
 from ttkthemes import themed_tk as tk
 from MVC.Model.Room import Room
-from MVC.Controller.OpenAndCloseFile import Read_File_BAction,Write_File_BAction,AWrite_File_Room
+from MVC.Controller.OpenAndCloseFile import ReadAndOpenFile,RoomController
 from tkinter import messagebox as mb
 time=datetime.datetime.now().ctime()
 time=str(time)
@@ -65,7 +65,7 @@ class BAction(object):
                                                 fg="#004d99", width=15, command=self.ReturnRoom)
             self.Bottow_Frame_BtnClear.place(x=20, y=260)
 
-            Open_File =Read_File_BAction()
+            Open_File =ReadAndOpenFile.Read_File_BAction(self)
             List_Show = Open_File.readlines()
             self.Scroll = Scrollbar(self.Bottow, width=20)
             self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65, font="arial 10 underline bold italic", bd=5)
@@ -101,11 +101,11 @@ class BAction(object):
         if(self.Bottow_Frame_EnPrice.get().isdigit() and self.Bottow_Frame_EnIDRoom.get().isdigit()):
               check=True
         if(check==True):
-            self.room=Room(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
-            if(self.room.getID()=="" or self.room.getTime()=="" or self.room.getKind()=="" or self.room.getPrice()==""or self.room.getStatus()==""):
+            self.room=RoomController(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
+            if(self.room.getID()=="" or self.room.getUsedTime()=="" or self.room.getKind()=="" or self.room.getPrice()==""or self.room.getStatus()==""):
                 return mb.showerror("False","Bạn cần nhập đầy đủ thông tin")
             else:
-                Data_Room=["ID: "+self.room.getID()," Price: "+self.room.getPrice()," Kind: "+self.room.getKind()," UsedTime: "+self.room.getTime()," Status: "+self.room.getStatus()+"\n"]
+                Data_Room=["ID: "+self.room.getID()," Price: "+self.room.getPrice()," Kind: "+self.room.getKind()," UsedTime: "+self.room.getUsedTime()," Status: "+self.room.getStatus()+"\n"]
 
             return Data_Room
         else:
@@ -118,7 +118,7 @@ class BAction(object):
         Data_Room=[self.Bottow_Frame_EnIDRoom.get(), int(self.Bottow_Frame_EnPrice.get()), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get()]
         return Data_Room
     def CheckOutForCustomer(self):
-        Open_File=Read_File_BAction()
+        Open_File=ReadAndOpenFile.Read_File_BAction(self)
         List_Show=Open_File.readlines()
         Open_File.close()
 
@@ -128,7 +128,7 @@ class BAction(object):
             for i in range(len(List_Show)):
                 if(self.Bottow_Frame_EnIDRoom.get() in List_Show[i]):
                      Data_Show=List_Show[i]
-        Write_File=Write_File_BAction()
+        Write_File=ReadAndOpenFile.Write_File_BAction(self)
         for i in List_Show:
             if (i!=Data_Show):
                 Write_File.write(i)
@@ -136,7 +136,7 @@ class BAction(object):
 
     def ReturnRoom(self):
         Gre = self.GetModel()
-        Open_File = AWrite_File_Room()
+        Open_File = ReadAndOpenFile.AWrite_File_Room(self)
         for i in Gre:
             Open_File.write(i)
         Open_File.close()
@@ -164,7 +164,7 @@ class BAction(object):
     Sử lý Nút Enter để Upload lại dữ liệu cho ListBox
     '''
     def Upload(self,event=None):
-        Open_File = Read_File_BAction()
+        Open_File = ReadAndOpenFile.Read_File_BAction(self)
         List_Show = Open_File.readlines()
         self.Scroll = Scrollbar(self.Bottow, width=20)
         self.List_Box = Listbox(self.Bottow, yscrollcommand=self.Scroll.set, width=65,

@@ -4,7 +4,7 @@ from ttkthemes import themed_tk as tk
 from tkinter.ttk import Combobox
 from MVC.Model.Room import Room
 from tkinter import messagebox as mb
-from MVC.Controller.OpenAndCloseFile import Read_File_Room,WWrite_File_Room,AWrite_File_Room,Write_File_BAction
+from MVC.Controller.OpenAndCloseFile import ReadAndOpenFile,RoomController
 time=datetime.datetime.now().ctime()
 time=str(time)
 class DataRoom(object):
@@ -72,23 +72,22 @@ class DataRoom(object):
         if(self.Bottow_Frame_EnPrice.get().isdigit() and self.Bottow_Frame_EnIDRoom.get().isdigit()):
               check=True
         if(check==True):
-            self.room=Room(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
-            if(self.room.getID()=="" or self.room.getTime()=="" or self.room.getKind()=="" or self.room.getPrice()==""or self.room.getStatus()==""):
+            self.room=RoomController(self.Bottow_Frame_EnIDRoom.get(), self.Bottow_Frame_EnPrice.get(), self.Bottow_Frame_CbKind.get(), self.Bottow_Frame_CbTimeSpend.get(), self.Bottow_Frame_EnStatus.get())
+            if(self.room.getID()=="" or self.room.getUsedTime()=="" or self.room.getKind()=="" or self.room.getPrice()==""or self.room.getStatus()==""):
                 return mb.showerror("False","Bạn cần nhập đầy đủ thông tin")
             else:
-                Data_Show=["ID: "+self.room.getID()," Price: "+self.room.getPrice()," Kind: "+self.room.getKind()," UsedTime: "+self.room.getTime()," Status: "+self.room.getStatus()+"\n"]
-
+                Data_Show=["ID: "+self.room.getID()," Price: "+self.room.getPrice()," Kind: "+self.room.getKind()," UsedTime: "+self.room.getUsedTime()," Status: "+self.room.getStatus()+"\n"]
             return Data_Show
         else:
             return mb.showerror("Error","Price and ID are Number")
 
     def AddNewRoom(self):
         Gre=self.GetModel()
-        Write_File = AWrite_File_Room()
+        Write_File = ReadAndOpenFile.AWrite_File_Room(self)
         for i in Gre:
             Write_File.write(i)
         Write_File.close()
-        Open_File=Read_File_Room()
+        Open_File=ReadAndOpenFile.Read_File_Room(self)
         List_Show=Open_File.readlines()
         self.Scroll=Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)
@@ -99,7 +98,7 @@ class DataRoom(object):
         self.List_Box.place(x=20, y=230)
     def CheckInForCustomer(self):
         Gre=self.GetModel()
-        Write_File=Write_File_BAction()
+        Write_File=ReadAndOpenFile.Write_File_BAction(self)
         for i in Gre:
             Write_File.write(i)
         Write_File.close()
@@ -107,7 +106,7 @@ class DataRoom(object):
     Fun Return lại các phòng còn trống
     '''
     def ReturnRoom(self):
-        Open_File=Read_File_Room()
+        Open_File=ReadAndOpenFile.Read_File_Room(self)
         List_Show=Open_File.readlines()
         Open_File.close()
 
@@ -117,7 +116,7 @@ class DataRoom(object):
             for i in range(len(List_Show)):
                 if(self.Bottow_Frame_EnIDRoom.get() in List_Show[i]):
                      Data_Show=List_Show[i]
-        Write_File=WWrite_File_Room()
+        Write_File=ReadAndOpenFile.WWrite_File_Room(self)
         for i in List_Show:
             if (i!=Data_Show):
                 Write_File.write(i)

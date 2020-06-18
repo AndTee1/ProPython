@@ -5,7 +5,7 @@ from MVC.View.GUiCustomer import main
 from MVC.View.GUIRoom import  main1
 from MVC.View.GUIBAction import main3
 from tkinter import messagebox as mb
-from MVC.Controller.OpenAndCloseFile import Read_File_Room
+from MVC.Controller.OpenAndCloseFile import ReadAndOpenFile
 from MVC.View.feedBackCustomer import main4
 date=datetime.datetime.now().date()
 date=str(date)
@@ -59,7 +59,7 @@ class App(object):
     Hàm xử lý Upload lại dữ liệu cho LixtBox
     '''
     def Upload(self,event=None):
-        Open_File = Read_File_Room()
+        Open_File = ReadAndOpenFile.Read_File_Room(self)
         List_Show = Open_File.readlines()
         self.Scroll = Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)

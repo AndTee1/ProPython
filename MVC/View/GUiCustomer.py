@@ -4,7 +4,7 @@ from ttkthemes import themed_tk as tk
 from tkinter.ttk import Combobox
 from MVC.Model.Customer import Customer
 from tkinter import messagebox as mb
-from MVC.Controller.OpenAndCloseFile import Read_File_Customer,Write_File_Customer
+from MVC.Controller.OpenAndCloseFile import ReadAndOpenFile,CustomerController
 time=datetime.datetime.now().ctime()
 time=str(time)
 class Data_Customer(object):
@@ -65,22 +65,22 @@ class Data_Customer(object):
         if(self.Bottow_Frame_EnPhoneCustomer.get().isdigit() and self.Bottow_Frame_EnCMNDCustomer.get().isdigit()):
               check=True
         if(check==True):
-            self.customer=Customer(self.Bottow_Frame_EnUserCustomer.get(), self.Bottow_Frame_EnPhoneCustomer.get(), self.Bottow_Frame_EnCMNDCustomer.get(), self.bottow_Frame_CbTimeSpend.get())
-            if(self.customer.getName()=="" or self.customer.getCMND()=="" or self.customer.getPhone()=="" or self.customer.getTime()==""):
+            self.customer=CustomerController(self.Bottow_Frame_EnUserCustomer.get(), self.Bottow_Frame_EnPhoneCustomer.get(), self.Bottow_Frame_EnCMNDCustomer.get(), self.bottow_Frame_CbTimeSpend.get())
+            if(self.customer.getName()=="" or self.customer.getID()=="" or self.customer.getPhone()=="" or self.customer.getUsedTime()==""):
                 return mb.showerror("False","Bạn cần nhập đầy đủ thông tin khách hàng")
             else:
-                Data_Show=["Name: "+self.customer.getName()," Phone: "+self.customer.getPhone()," CMND: "+self.customer.getCMND()," UsedTime: "+self.customer.getTime()+"\n"]
+                Data_Show=["Name: "+self.customer.getName()," Phone: "+self.customer.getPhone()," CMND: "+self.customer.getID()," UsedTime: "+self.customer.getUsedTime()+"\n"]
 
             return Data_Show
         else:
             return mb.showerror("Error","Phone and IDCard are Number")
     def Add_NewCustomer(self):
         Gre=self.GetModel()
-        Write_File = Write_File_Customer()
+        Write_File = ReadAndOpenFile.Write_File_Customer(self)
         for i in Gre:
             Write_File.write(i)
         Write_File.close()
-        Open_File=Read_File_Customer()
+        Open_File=ReadAndOpenFile.Read_File_Customer(self)
         List_Show=Open_File.readlines()
         self.Scroll=Scrollbar(self.Bottow, width=20)
         self.Scroll.place(x=615, y=230)
@@ -90,7 +90,7 @@ class Data_Customer(object):
             self.List_Box.insert(END, str(i) + " " + List_Show[i])
         self.List_Box.place(x=20, y=230)
     def Search_Customer(self):
-        Open_File=Read_File_Customer()
+        Open_File=ReadAndOpenFile.Read_File_Customer(self)
         List_Show=Open_File.readlines()
         Open_File.close()
         Data_Show=list()
